@@ -140,13 +140,16 @@
     .category-card:focus-visible { outline: 2px solid var(--color-bordo); outline-offset: 3px; }
     .section-title-centered { display: flex; align-items: center; justify-content: center; gap: 1.2rem; color: var(--color-bordo); }
     .section-title-centered h2 { text-align: center; }
+    .section-title--hero { gap: 1.8rem; }
+    .section-title--hero h2 { font-size: clamp(2.6rem, 4.6vw, 4.1rem); line-height: 1.02; letter-spacing: -0.025em; }
+    .section-title--hero .section-leaf { font-size: 3.4rem; }
     .section-leaf { color: var(--color-zeytin); font-size: 2.1rem; transform: rotate(-25deg); }
     .section-leaf--right { transform: rotate(155deg); }
     .trust-icon { display: flex; height: 36px; width: 36px; flex: 0 0 auto; align-items: center; justify-content: center; border: 1px solid var(--color-bordo); color: var(--color-bordo); font-size: 1.4rem; }
     .recipe-card, .review-card { border: 1px solid color-mix(in srgb, var(--color-kraft) 25%, transparent); background: white; }
     .review-card { padding: 1.5rem; }
-    .footer-heading { color: var(--color-kraft); font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-    .footer-link { transition: color .2s; }
+    .footer-heading { color: var(--color-kraft); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .footer-link { font-weight: 600; transition: color .2s; }
     .footer-link:hover { color: white; }
     .footer-social { display: flex; height: 36px; width: 36px; align-items: center; justify-content: center; border: 1px solid color-mix(in srgb, var(--color-krem) 28%, transparent); transition: border-color .2s, color .2s; }
     .footer-social:hover { border-color: var(--color-kraft); color: var(--color-kraft); }
@@ -183,3 +186,15 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
     .stamp-spin { animation: none; }
 }
+
+/* mobil ince ayarlar (son söz) */
+@media (max-width: 767px) {
+    .section-title--hero h2 { font-size: 2rem; line-height: 1.05; }
+    .section-title--hero .section-leaf { display: none !important; }
+    .section-title--hero { gap: 0; }
+    .category-card__shade { height: 70%; background: linear-gradient(0deg, #FFFFFF 0%, #FFFFFF 44%, rgba(255,255,255,.85) 60%, rgba(255,255,255,0) 100%); }
+}
+
+/* sofralardan notlar başlığı */
+#notlar h2 { font-weight: 700; font-size: clamp(1.7rem, 2.4vw, 2.15rem); letter-spacing: -0.015em; }
+#notlar > .container-page > div:first-child p:not(.eyebrow) { font-weight: 800; }
