@@ -1,0 +1,25 @@
+# Elbistan Sofrası — Hostinger dağıtımı
+# public_html köküne yükleme yapıldığında istekleri /public klasörüne yönlendirir.
+# (Domain doğrudan public/ klasörüne yönlendirilmişse bu dosya zaten devre dışı kalır.)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Gerçek dosya/klasör isteklerini olduğu gibi bırak
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Dizin listelemeyi kapat
+Options -Indexes
+
+# .env, composer ve sqlite dosyalarına dışarıdan erişimi engelle
+<FilesMatch "^(\.env|\.env\..*|composer\.(json|lock)|artisan|package(-lock)?\.json|database\.sqlite)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
