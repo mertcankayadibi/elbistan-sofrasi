@@ -22,3 +22,4 @@ Route::get('/hakkimizda', [StoryController::class, 'show'])->name('page.story');
 Route::get('/tarifler', [RecipeController::class, 'index'])->name('recipes.index');
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robots'])->name('robots');

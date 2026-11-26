@@ -7,6 +7,13 @@ use Illuminate\Http\Response;
 
 final class SitemapController extends Controller
 {
+    public function robots(): Response
+    {
+        $content = "User-agent: *\nAllow: /\nDisallow: /sepet\nDisallow: /urunler?q=\n\nSitemap: ".url('/sitemap.xml')."\n";
+
+        return response($content, 200, ['Content-Type' => 'text/plain; charset=UTF-8']);
+    }
+
     public function index(): Response
     {
         $lastmod = now()->toDateString();

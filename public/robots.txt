@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /sepet
-Allow: /
-Sitemap: https://elbistan-sofrasi.test/sitemap.xml

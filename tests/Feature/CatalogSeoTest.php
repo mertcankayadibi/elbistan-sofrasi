@@ -54,8 +54,10 @@ it('renders product seo metadata and product structured data', function () {
 });
 
 it('publishes robots and sitemap content for the static catalogue', function () {
-    expect(file_get_contents(public_path('robots.txt')))
-        ->toContain('Sitemap:');
+    $this->get('/robots.txt')
+        ->assertOk()
+        ->assertSee('Sitemap:', false)
+        ->assertSee('/sitemap.xml', false);
 
     $sitemap = app(SitemapController::class)->index();
 
