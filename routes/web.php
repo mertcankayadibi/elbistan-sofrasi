@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,5 @@ Route::delete('/sepet/cikar', [CartController::class, 'remove'])->name('cart.rem
 Route::post('/sepet/temizle', [CartController::class, 'clear'])->name('cart.clear');
 Route::get('/hakkimizda', [StoryController::class, 'show'])->name('page.story');
 Route::get('/tarifler', [RecipeController::class, 'index'])->name('recipes.index');
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');

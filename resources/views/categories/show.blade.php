@@ -27,7 +27,7 @@
                 </aside>
                 <div>
                     <div class="mt-3 flex flex-col gap-3 border-b border-kraft/25 pb-4 sm:flex-row sm:items-center sm:justify-between">
-                        <div class="flex items-center gap-3"><h1 class="font-display text-[1.6rem] leading-none text-bordo md:text-[1.8rem]">{{ $category['name'] }}</h1><span class="text-sm font-semibold text-zeytin">{{ $products->total() }} ürün</span></div>
+                        <h1 class="font-display text-[1.6rem] leading-none text-bordo md:text-[1.85rem]">{{ $category['name'] }}</h1>
                         <div class="flex items-center gap-3">
                             <button type="button" data-filter-open class="flex h-11 items-center gap-2 border border-kraft/50 px-4 text-sm font-bold text-fume lg:hidden">Filtrele @if($selectedFilterCount > 0)<span class="text-bordo">({{ $selectedFilterCount }})</span>@endif</button>
                             <form action="{{ $filterAction }}" method="get" class="flex items-center gap-3 text-[15px] font-semibold">
