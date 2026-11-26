@@ -43,7 +43,7 @@ final class CatalogFilter
                 return false;
             }
 
-            if ($weights !== [] && ! in_array(self::normaliseWeight((string) ($product['weight'] ?? '')), array_map(self::normaliseWeight(...), $weights), true)) {
+            if ($weights !== [] && ! self::matchesWeight((string) ($product['weight'] ?? ''), $weights)) {
                 return false;
             }
 
@@ -112,7 +112,8 @@ final class CatalogFilter
         }
 
         foreach ($state['weights'] as $weight) {
-            $chips[] = ['label' => $weight.' ×', 'url' => self::remove($query, 'agirlik', $weight, $path)];
+            $label = preg_match('/^\d+$/', $weight) === 1 ? $weight.' g' : $weight;
+            $chips[] = ['label' => $label.' ×', 'url' => self::remove($query, 'agirlik', $weight, $path)];
         }
         foreach ($state['badges'] as $badge) {
             $chips[] = ['label' => $badge.' ×', 'url' => self::remove($query, 'etiket', $badge, $path)];
@@ -227,6 +228,21 @@ final class CatalogFilter
         }
 
         return $products;
+    }
+
+    /** @param array<int, string> $weights */
+    private static function matchesWeight(string $productWeight, array $weights): bool
+    {
+        $productWeight = self::normaliseWeight($productWeight);
+
+        foreach ($weights as $weight) {
+            $candidate = self::normaliseWeight($weight);
+            if ($candidate !== '' && ($productWeight === $candidate || str_starts_with($productWeight, $candidate))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static function normaliseWeight(string $value): string

@@ -3,7 +3,11 @@
 <head>
     @php
         $seo = array_merge(\App\Support\Seo::defaults(), $seo ?? []);
+        $sectionTitle = trim((string) $__env->yieldContent('title'));
         $pageTitle = trim((string) ($seo['title'] ?? 'Ana Sayfa'));
+        if ($pageTitle === 'Ana Sayfa' && $sectionTitle !== '' && $sectionTitle !== 'Ana Sayfa') {
+            $pageTitle = $sectionTitle;
+        }
         $fullTitle = str_contains($pageTitle, \App\Support\Seo::SITE_NAME)
             ? $pageTitle
             : $pageTitle.' · '.\App\Support\Seo::SITE_NAME;

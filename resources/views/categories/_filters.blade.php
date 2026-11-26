@@ -42,7 +42,7 @@
                                 $rangeQuery['max'] = $range['max'];
                             }
                             $rangeUrl = $filterAction.'?'.http_build_query($rangeQuery);
-                            $rangeSelected = (int) ($filterState['min'] ?? -1) === $range['min'] && (($filterState['max'] ?? null) === $range['max']);
+                            $rangeSelected = (int) ($filterState['min'] ?? -1) === $range['min'] && (($filterState['max'] === null && $range['max'] === null) || ($filterState['max'] !== null && $range['max'] !== null && (float) $filterState['max'] === (float) $range['max']));
                         @endphp
                         <a href="{{ $rangeUrl }}" class="border px-2.5 py-1.5 text-xs font-semibold transition {{ $rangeSelected ? 'border-bordo bg-bordo/5 text-bordo' : 'border-kraft/35 text-fume/70 hover:border-bordo hover:text-bordo' }}">{{ $range['label'] }}</a>
                     @endforeach
